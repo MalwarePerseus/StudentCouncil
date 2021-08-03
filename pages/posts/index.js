@@ -1,3 +1,4 @@
+import { getAllPosts } from '../../lib/api'
 import Link from 'next/link'
 
 export default function Posts({posts}) {
@@ -12,7 +13,7 @@ export default function Posts({posts}) {
             year: 'numeric',
           })
           return(
-            <article key="post.slug" className="bg-purple-600 my-5 mx-10 rounded-3xl p-10">
+            <article key="post.slug" className="shadow-2xl hover:bg-purple-700 bg-purple-600 my-5 mx-10 rounded-3xl p-10">
               <h2>
                 <Link href={post.permalink}>
                   <a className="text-3xl font-bold">{post.title}</a>
@@ -38,69 +39,7 @@ export default function Posts({posts}) {
 export function getStaticProps() {
   return {
     props: {
-      posts: [
-        {
-          title: "My first post",
-          createdAt: "2021-05-01",
-          excerpt: "A short excerpt summarizing the post.",
-          permalink: "/posts/my-first-post",
-          slug: "my-first-post",
-        }, {
-          title: "My second post",
-          createdAt: "2021-05-04",
-          excerpt: "Another summary that is short.",
-          permalink: "/posts/my-second-post",
-          slug: "my-second-post",
-        }, {
-          title: "My second post",
-          createdAt: "2021-05-04",
-          excerpt: "Another summary that is short.",
-          permalink: "/posts/my-second-post",
-          slug: "my-second-post",
-        }, {
-          title: "My second post",
-          createdAt: "2021-05-04",
-          excerpt: "Another summary that is short.",
-          permalink: "/posts/my-second-post",
-          slug: "my-second-post",
-        }, {
-          title: "My second post",
-          createdAt: "2021-05-04",
-          excerpt: "Another summary that is short.",
-          permalink: "/posts/my-second-post",
-          slug: "my-second-post",
-        }, {
-          title: "My second post",
-          createdAt: "2021-05-04",
-          excerpt: "Another summary that is short.",
-          permalink: "/posts/my-second-post",
-          slug: "my-second-post",
-        }, {
-          title: "My second post",
-          createdAt: "2021-05-04",
-          excerpt: "Another summary that is short.",
-          permalink: "/posts/my-second-post",
-          slug: "my-second-post",
-        }, {
-          title: "My second post",
-          createdAt: "2021-05-04",
-          excerpt: "Another summary that is short.",
-          permalink: "/posts/my-second-post",
-          slug: "my-second-post",
-        }, {
-          title: "My second post",
-          createdAt: "2021-05-04",
-          excerpt: "Another summary that is short.",
-          permalink: "/posts/my-second-post",
-          slug: "my-second-post",
-        }, {
-          title: "My second post",
-          createdAt: "2021-05-04",
-          excerpt: "Another summary that is short.",
-          permalink: "/posts/my-second-post",
-          slug: "my-second-post",
-        }
-      ]
+      posts: getAllPosts(),
     }
   }
 }
