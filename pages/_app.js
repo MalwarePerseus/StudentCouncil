@@ -38,7 +38,7 @@ function MyApp({ Component, pageProps }) {
                   </Link>
               </div>
               <div>
-                <Link href="https://discord.gg/fCUmxMxwEg">
+                <Link href="https://discord.gg/">
                   <a className="inline-block text-sm px-4 py-2 leading-none border rounded text-green-200 border-purple-600 hover:border-transparent hover:text-purple-900 hover:bg-white mt-4 lg:mt-0">
                     Join Discord
                   </a>
