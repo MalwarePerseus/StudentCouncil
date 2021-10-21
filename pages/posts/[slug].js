@@ -1,4 +1,7 @@
-import  { getAllPosts, getPostBySlug } from '../../lib/api'
+import Image from 'next/image';
+import Link from 'next/link';
+
+import  { getMembersBySlug, getAllPosts, getPostBySlug } from '../../lib/api'
 
 export default function Post({ post }) {
 	const prettyDate = new Date(post.createdAt).toLocaleString('en-US', {
@@ -13,6 +16,16 @@ export default function Post({ post }) {
 
 			<time dateTime={post.createdAt}>{prettyDate}</time>
 			
+			<div>
+				<Image alt={post.author.name} src={post.author.profilePictureURL} width={50} height={50} />
+
+				<Link href={post.author.permalink}>
+					<a>
+						{post.author.name}
+					</a>
+				</Link>
+			</div>
+
 			<div dangerouslySetInnerHTML={{ __html: post.body }} />
 
 		</div>
@@ -20,10 +33,15 @@ export default function Post({ post }) {
 }
 
 export function getStaticProps({ params }) {
-	return{
+	const post = getPostBySlug(params.slug)
+
+	return {
 		props: {
-			post: getPostBySlug(params.slug),
-		},
+			post: {
+				...post,
+				author: getMembersBySlug(post.author),
+			},
+		}
 	}
 }
 

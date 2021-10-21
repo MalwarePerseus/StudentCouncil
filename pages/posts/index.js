@@ -1,5 +1,7 @@
-import { getAllPosts } from '../../lib/api'
 import Link from 'next/link'
+import Image from 'next/image'
+
+import { getAllPosts, getMembersBySlug } from '../../lib/api'
 
 export default function Posts({posts}) {
   return (
@@ -22,6 +24,10 @@ export default function Posts({posts}) {
               
               <time dateTime={post.createdAt}>{prettyDate}</time>
 
+              <div>
+                <Image alt={post.author.name} className="rounded-full" src={post.author.profilePictureURL} height={40} width={40} />
+                <span>{post.author.name}</span>
+              </div>
               <p className="mb-4">{post.excerpt}</p>
 
               <Link href={post.permalink}>
@@ -39,7 +45,10 @@ export default function Posts({posts}) {
 export function getStaticProps() {
   return {
     props: {
-      posts: getAllPosts(),
+      posts: getAllPosts().map(post => ({
+        ...post,
+        author: getMembersBySlug(post.author),
+      })),
     }
   }
 }
