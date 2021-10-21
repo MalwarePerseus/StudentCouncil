@@ -1,6 +1,6 @@
 ---
 title: "Introduction"
-excerpt: "An Introduction of the Headboy for this session."
+excerpt: "An Fintro of the Headboy for this session."
 createdAt: "2021-05-04"
 author: deepak-singh
 ---
